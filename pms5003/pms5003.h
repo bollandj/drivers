@@ -5,27 +5,27 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-typedef struct _pms5003_data_t 
+typedef struct _pms5003_data_t
 {
-		uint16_t pm1_0; // PM1.0 concentration (ug/m^3)
-		uint16_t pm2_5; // PM2.5 concentration (ug/m^3)
-		uint16_t pm10;  // PM10 concentration (ug/m^3)
-		uint16_t n0_3;  // Number of particles >0.3um per 0.1L
-		uint16_t n0_5;  // Number of particles >0.5um per 0.1L
-		uint16_t n1_0;  // Number of particles >1.0um per 0.1L
-		uint16_t n2_5;  // Number of particles >2.5um per 0.1L
-		uint16_t n5_0;  // Number of particles >5.0um per 0.1L
-		uint16_t n10;   // Number of particles >10um per 0.1L
+        uint16_t pm1_0; // PM1.0 concentration (ug/m^3)
+        uint16_t pm2_5; // PM2.5 concentration (ug/m^3)
+        uint16_t pm10;  // PM10 concentration (ug/m^3)
+        uint16_t n0_3;  // Number of particles >0.3um per 0.1L
+        uint16_t n0_5;  // Number of particles >0.5um per 0.1L
+        uint16_t n1_0;  // Number of particles >1.0um per 0.1L
+        uint16_t n2_5;  // Number of particles >2.5um per 0.1L
+        uint16_t n5_0;  // Number of particles >5.0um per 0.1L
+        uint16_t n10;   // Number of particles >10um per 0.1L
 } pms5003_data_t;
 
 typedef struct _pms5003_t
 {
-	uint8_t buf[32];
-	unsigned int buf_p;		
-	bool data_ready;
-	bool data_valid;
+    uint8_t buf[32];
+    unsigned int buf_p;		
+    bool data_ready;
+    bool data_valid;
 
-	pms5003_data_t data;
+    pms5003_data_t data;
 } pms5003_t;
 
 void pms5003_init(pms5003_t *pms5003);
