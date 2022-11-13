@@ -1,29 +1,26 @@
 
 #include "mcp49xx.h"
-#include "spi.h"
 
-static uint8_t _mcp49xx_config=0x00;
-
-void mcp49xx_config(uint8_t buf, uint8_t gain, uint8_t shutdown)
+void mcp49xx_init(mcp49xx_t *mcp49xx, void (*spi_write)(uint8_t *data, size_t len), mcp49xx_buf_t buf, mcp49xx_ga_t gain)
 {
-    _mcp49xx_config = MCP49XX_BUF(buf) | MCP49XX_GA(gain) | MCP49XX_SHDN(shutdown);
+    mcp49xx->config = MCP49XX_BUF(buf) | MCP49XX_GA(gain) | MCP49XX_SHDN(MCP49XX_SHDN_ENABLE_Val);
 
     uint8_t data[2] = 
 	{
-		_mcp49xx_config,
+		mcp49xx->config,
 		0x00
 	};
 
-	spi_write(SERCOM0, data, 2);
+	mcp49xx->spi_write(data, 2);
 }
 
-void mcp49xx_write(uint16_t val, uint8_t dac)
+void mcp49xx_write(mcp49xx_t *mcp49xx, uint16_t value, mcp49xx_ab_t channel)
 {
 	uint8_t data[2] = 
 	{
-		MCP49XX_AB(dac) | _mcp49xx_config | MCP49XX_D_UPPER(val >> 8),
-		MCP49XX_D_LOWER(val)
+		MCP49XX_AB(channel) | mcp49xx->config | MCP49XX_D_UPPER(value >> 8),
+		MCP49XX_D_LOWER(value)
 	};
 
-	spi_write(SERCOM0, data, 2);
+	mcp49xx->spi_write(data, 2);
 }

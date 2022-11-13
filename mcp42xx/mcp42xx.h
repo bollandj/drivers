@@ -3,6 +3,7 @@
 #define MCP42XX_H_
 
 #include <stdint.h>
+#include <stddef.h>
 
 /* Register definitions */
 
@@ -38,7 +39,12 @@
 #define MCP42XX_COMMAND_DEC         (MCP42XX_COMMAND_DEC_Val << MCP42XX_COMMAND_Pos)
 #define MCP42XX_COMMAND_READ        (MCP42XX_COMMAND_READ_Val << MCP42XX_COMMAND_Pos)
 
-void mcp42xx_write(uint8_t pos, uint8_t dev);
-void mcp42xx_write_nv(uint8_t pos, uint8_t pot);
+typedef struct mcp42xx {
+    void (*spi_write)(uint8_t *data, size_t len);
+} mcp42xx_t;
+
+void mcp42xx_init(mcp42xx_t *mcp42xx, void (*spi_write)(uint8_t *data, size_t len));
+void mcp42xx_write(mcp42xx_t *mcp42xx, uint8_t value, uint8_t dev);
+void mcp42xx_write_nv(mcp42xx_t *mcp42xx, uint8_t value, uint8_t pot);
 
 #endif // MCP42XX_H_
