@@ -40,10 +40,10 @@
 #define MCP42XX_COMMAND_READ        (MCP42XX_COMMAND_READ_Val << MCP42XX_COMMAND_Pos)
 
 typedef struct mcp42xx {
-    void (*spi_write)(uint8_t *data, size_t len);
+    void (*spi_write)(const uint8_t *data, size_t len);
 } mcp42xx_t;
 
-void mcp42xx_init(mcp42xx_t *mcp42xx, void (*spi_write)(uint8_t *data, size_t len));
+void mcp42xx_init(mcp42xx_t *mcp42xx, void (*spi_write)(const uint8_t *data, size_t len));
 void mcp42xx_write(mcp42xx_t *mcp42xx, uint8_t value, uint8_t dev);
 void mcp42xx_write_nv(mcp42xx_t *mcp42xx, uint8_t value, uint8_t pot);
 

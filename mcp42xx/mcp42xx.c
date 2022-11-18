@@ -1,6 +1,11 @@
 
 #include "mcp42xx.h"
 
+void mcp42xx_init(mcp42xx_t *mcp42xx, void (*spi_write)(const uint8_t *data, size_t len))
+{
+	mcp42xx->spi_write = spi_write;
+}
+
 void mcp42xx_write(mcp42xx_t *mcp42xx, uint8_t value, uint8_t pot) 
 {
 	uint8_t data[2] = 
