@@ -31,20 +31,20 @@ typedef struct _pms5003_t
 void pms5003_init(pms5003_t *pms5003);
 void pms5003_process_byte(pms5003_t *pms5003, uint8_t data);
 
-inline bool pms5003_is_data_ready(pms5003_t *pms5003) { return pms5003->data_ready; }
-inline bool pms5003_is_data_valid(pms5003_t *pms5003) { return pms5003->data_valid; }
+static inline bool pms5003_is_data_ready(pms5003_t *pms5003) { return pms5003->data_ready; }
+static inline bool pms5003_is_data_valid(pms5003_t *pms5003) { return pms5003->data_valid; }
 
-inline pms5003_data_t pms5003_get_data(pms5003_t *pms5003) { pms5003->data_ready = false; return pms5003->data; }
+static inline pms5003_data_t pms5003_get_data(pms5003_t *pms5003) { pms5003->data_ready = false; return pms5003->data; }
 
-inline uint16_t pms5003_get_pm1_0(pms5003_t *pms5003) { pms5003->data_ready = false; return pms5003->data.pm1_0; }
-inline uint16_t pms5003_get_pm2_5(pms5003_t *pms5003) { pms5003->data_ready = false; return pms5003->data.pm2_5; }
-inline uint16_t pms5003_get_pm10(pms5003_t *pms5003) { pms5003->data_ready = false; return pms5003->data.pm10; }
+static inline uint16_t pms5003_get_pm1_0(pms5003_t *pms5003) { pms5003->data_ready = false; return pms5003->data.pm1_0; }
+static inline uint16_t pms5003_get_pm2_5(pms5003_t *pms5003) { pms5003->data_ready = false; return pms5003->data.pm2_5; }
+static inline uint16_t pms5003_get_pm10(pms5003_t *pms5003) { pms5003->data_ready = false; return pms5003->data.pm10; }
 
-inline uint16_t pms5003_get_n0_3(pms5003_t *pms5003) { pms5003->data_ready = false; return pms5003->data.n0_3; }
-inline uint16_t pms5003_get_n0_5(pms5003_t *pms5003) { pms5003->data_ready = false; return pms5003->data.n0_5; }
-inline uint16_t pms5003_get_n1_0(pms5003_t *pms5003) { pms5003->data_ready = false; return pms5003->data.n1_0; }
-inline uint16_t pms5003_get_n2_5(pms5003_t *pms5003) { pms5003->data_ready = false; return pms5003->data.n2_5; }
-inline uint16_t pms5003_get_n5_0(pms5003_t *pms5003) { pms5003->data_ready = false; return pms5003->data.n5_0; }
-inline uint16_t pms5003_get_n10(pms5003_t *pms5003) { pms5003->data_ready = false; return pms5003->data.n10; }
+static inline uint16_t pms5003_get_n0_3(pms5003_t *pms5003) { pms5003->data_ready = false; return pms5003->data.n0_3; }
+static inline uint16_t pms5003_get_n0_5(pms5003_t *pms5003) { pms5003->data_ready = false; return pms5003->data.n0_5; }
+static inline uint16_t pms5003_get_n1_0(pms5003_t *pms5003) { pms5003->data_ready = false; return pms5003->data.n1_0; }
+static inline uint16_t pms5003_get_n2_5(pms5003_t *pms5003) { pms5003->data_ready = false; return pms5003->data.n2_5; }
+static inline uint16_t pms5003_get_n5_0(pms5003_t *pms5003) { pms5003->data_ready = false; return pms5003->data.n5_0; }
+static inline uint16_t pms5003_get_n10(pms5003_t *pms5003) { pms5003->data_ready = false; return pms5003->data.n10; }
 
 #endif /* PMS5003_H_ */
